@@ -1,0 +1,32 @@
+services:
+  # ส่วนของหน้าบ้าน
+  frontend-service:
+    build:
+      context: ./frontend/frtPws
+      dockerfile: Dockerfile
+    ports:
+      - "3343:5173"
+    volumes:
+      - ./frontend/frtPws:/app
+      - /app/node_modules
+    networks:
+      - netsiwapan02
+    environment:
+      - CHOKIDAR_USEPOLLING=true # ช่วยให้ Docker บน Windows มองเห็นการเซฟไฟล์ได้ไวขึ้น
+    restart: unless-stopped
+
+  # ส่วนของหลังบ้าน
+  backend-service:
+    build:
+      context: ./backend/backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - netsiwapan02
+    restart: unless-stopped
+
+# สร้างวง Network เพื่อให้หน้าบ้านกับหลังบ้านคุยกันได้
+networks:
+  netsiwapan02:
+    driver: bridge

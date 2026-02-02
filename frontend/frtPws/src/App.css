@@ -1,0 +1,140 @@
+/* --- ส่วนเดิมที่คุณมีอยู่ (ปรับปรุงเล็กน้อย) --- */
+.main-wrapper {
+  background-color: #ffffff;
+  background-image: radial-gradient(#aaa 1px, transparent 0);
+  background-size: 20px 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 20px; /* เพิ่ม padding กันขอบจอ */
+  box-sizing: border-box;
+}
+
+/* --- 1. ปรับขนาด Container ให้กว้างขึ้น --- */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* เพิ่มระยะห่างระหว่างกล่องให้ดูโปร่งขึ้น */
+  width: 95%; /* ขยายให้กว้างเกือบเต็มจอ */
+  max-width: 1400px; /* เพิ่มขีดจำกัดความกว้างให้รองรับหน้าจอคอมพิวเตอร์ขนาดใหญ่ */
+  margin: 0 auto; /* จัดให้อยู่ตรงกลางหน้าจอเสมอ */
+}
+
+.box {
+  background: white;
+  border: 3px solid black;
+  box-shadow: 8px 8px 0px 0px black;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* --- 2. ปรับขนาดตัวหนังสือให้ใหญ่ตามขนาดจอ --- */
+.header-box h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 5vw, 3rem); /* ปรับขนาดอัตโนมัติตามความกว้างหน้าจอ */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: black;
+}
+
+.input-box input {
+  width: 100%;
+  border: none;
+  font-size: 2rem;
+  text-align: center;
+  outline: none;
+  color: #333;
+  background: transparent;
+}
+
+.bottom-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* หน้าจอใหญ่เป็น 2 คอลัมน์ */
+  gap: 20px;
+}
+
+.image-box {
+  aspect-ratio: 1 / 1;
+}
+
+.result-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.result-box {
+  flex-grow: 1;
+  min-height: 100px;
+  color: black;
+}
+
+.button-area {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.start-btn {
+  background: black;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  font-size: 1.2rem;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 5px 5px 0px 0px #555;
+  transition: transform 0.1s;
+}
+
+.start-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0px 0px #555;
+}
+
+/* --- เพิ่มต่อท้ายไฟล์ --- */
+
+/* ปรับให้กล่องใส่รูปมี padding นิดหน่อย รูปจะได้ไม่ชิดขอบเกินไป */
+.image-box {
+  padding: 10px; 
+}
+
+/* ควบคุมขนาดรูปภาพ */
+.status-image {
+  max-width: 100%;   /* กว้างไม่เกินกล่องแม่ */
+  max-height: 100%;  /* สูงไม่เกินกล่องแม่ */
+  object-fit: contain; /* รักษาสัดส่วนรูปภาพไม่ให้เบี้ยว */
+  display: block;    /* แก้ปัญหารูปมีขอบขาวด้านล่างนิดๆ ในบาง browser */
+}
+
+/* --- 📱 ส่วนที่เพิ่มใหม่: สำหรับหน้าจอมือถือ (Responsive) --- */
+@media (max-width: 600px) {
+  .header-box h1 {
+    font-size: 1.2rem; /* ลดขนาดหัวข้อลง */
+  }
+
+  .input-box input {
+    font-size: 1.4rem; /* ลดขนาดช่องกรอกรหัสลง */
+  }
+
+  .bottom-layout {
+    grid-template-columns: 1fr; /* เปลี่ยนเป็นแถวเดี่ยวแนวตั้ง */
+  }
+
+  .box {
+    box-shadow: 4px 4px 0px 0px black; /* ลดขนาดเงาให้ดูไม่เทอะทะบนจอเล็ก */
+    padding: 15px;
+  }
+
+  .button-area {
+    justify-content: center; /* ปุ่ม Start อยู่ตรงกลางในมือถือ */
+  }
+
+  .start-btn {
+    width: 100%; /* ให้ปุ่มกว้างเต็มจอเพื่อให้กดง่ายขึ้น */
+  }
+}
