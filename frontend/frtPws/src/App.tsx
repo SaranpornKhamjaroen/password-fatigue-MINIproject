@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import './App.css'
-
-//import sssImg from './assets/sss.png'
 import hgyghh from './assets/hgyghh.gif'
 
 function App() {
@@ -19,7 +17,6 @@ function App() {
     setResult('Predicting...')
 
     try {
-      // เชื่อมต่อพอร์ต 8000 ตามที่ตั้งไว้ใน docker-compose
       const response = await fetch('http://localhost:8000/predict', {
         method: 'POST',
         headers: {
@@ -30,7 +27,6 @@ function App() {
 
       if (response.ok) {
         const data = await response.json()
-        // แปลผลลัพธ์ risk_level จาก AI ของคุณ
         const riskMapping: { [key: number]: string } = {
           0: "🔴 VERY WEAK (High Risk)",
           1: "🟡 MODERATE",
@@ -47,14 +43,13 @@ function App() {
     }
   }
 
-  // ... ส่วนของ handleStart เหมือนเดิม ...
-
   return (
     <div className="main-wrapper">
       <div className="app-container">
+        
         {/* 1. ส่วนหัว */}
         <div className="box header-box">
-          <h1>Congrats, Your Password is Gone</h1>
+          <h1>CONGRATS , YOUR PASSWORD IS GONE</h1>
         </div>
 
         {/* 2. ส่วนช่องกรอกรหัส */}
@@ -68,19 +63,15 @@ function App() {
           />
         </div>
 
-        {/* 3. ส่วนเลย์เอาต์ล่าง (ต้องคลุมทั้งรูปและผลลัพธ์) */}
+        {/* 3. ส่วนเลย์เอาต์ล่าง (รูป + ผลลัพธ์) */}
         <div className="bottom-layout">
-
-          {/* กล่องรูปภาพ (อยู่ฝั่งซ้าย) */}
+          
+          {/* กล่องรูปภาพ */}
           <div className="box image-box">
-            <img
-              src={hgyghh}
-              alt="Status"
-              className="status-image"
-            />
+            <img src={hgyghh} alt="Status" />
           </div>
 
-          {/* กล่องกลุ่มผลลัพธ์ (อยู่ฝั่งขวา) */}
+          {/* กลุ่มผลลัพธ์และปุ่ม */}
           <div className="result-group">
             <div className="box result-box">
               <p style={{ whiteSpace: 'pre-line' }}>{result}</p>
@@ -96,11 +87,8 @@ function App() {
               </button>
             </div>
           </div>
-          {/* ปิด result-group */}
 
         </div>
-        {/* ปิด bottom-layout */}
-
       </div>
     </div>
   )
