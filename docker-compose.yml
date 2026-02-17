@@ -5,7 +5,7 @@ services:
       context: ./frontend/frtPws
       dockerfile: Dockerfile
     ports:
-      - "3343:5173"
+      - "3210:5173"
     volumes:
       - ./frontend/frtPws:/app
       - /app/node_modules
